@@ -46,13 +46,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="readme.txt">
+    <None Include="cube2.brp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="..\Debug\cube.brp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="..\Debug\cube2.brp">
+    <None Include="cube.brp">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

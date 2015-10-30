@@ -1,7 +1,7 @@
 //************************************
 //This project is written to construct a simple brep-based model
 //Author: feiqian  Email: feiqian@zju.edu.cn 
-//The project is BSD licensed
+//The project is MIT licensed
 //************************************
 #include <stdio.h>
 #include<stdlib.h>

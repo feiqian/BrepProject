@@ -1,3 +1,5 @@
+**This project is written to construct a simple brep-based model**
+
 ####输入格式（.brp文件）
 ```
 顶点数目M 欧拉操作数目N  
