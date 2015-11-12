@@ -1,7 +1,7 @@
 //************************************
 //This project is written to construct a simple brep-based model
 //Author: feiqian  Email: feiqian@zju.edu.cn 
-//The project is MIT licensed
+//´úÂëÍĞ¹ÜµØÖ·£ºhttps://github.com/feiqian/BrepProject
 //************************************
 #include <stdio.h>
 #include<stdlib.h>
@@ -10,7 +10,10 @@
 
 int main(int argc, char**argv)
 {
-	const char* modelPath = "cube.brp";
+	const char* modelPath;
+	if(argc>=2) modelPath = argv[1];
+	else modelPath = "cube.brp";
+
 	BrepModel* brepModel = new BrepModel;
 	brepModel->createSolid(modelPath);
 

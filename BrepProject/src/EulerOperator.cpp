@@ -124,6 +124,12 @@ void EulerOperator::insertSolid(Solid*& head,Solid* solid)
 	}
 }
 
+/*
+ *构造一个体，面，外环，顶点
+ *@param[in] point 新顶点的位置
+ *@param[out] solid 新生成的体
+ *@return 新生成的顶点
+ */
 Vertex* EulerOperator::mvfs(Point point,Solid*& solid)
 {
 	Solid* solid2 = new Solid;
@@ -141,6 +147,13 @@ Vertex* EulerOperator::mvfs(Point point,Solid*& solid)
 	return vertex;
 }
 
+/*
+ *构造一个位置为point的新的顶点，并构造vertex指向新顶点的边
+ *@param[in] vertex 顶点
+ *@param[in] point 新生成的顶点位置
+ *@param[in] loop 当前环
+ *@return 新生成的半边
+ */
 Half_Edge* EulerOperator::mev(Vertex* vertex,Point point,Loop* loop)
 {
 	Vertex* vertex2 = new Vertex;
@@ -176,6 +189,14 @@ Half_Edge* EulerOperator::mev(Vertex* vertex,Point point,Loop* loop)
 	return he1;
 }
 
+/*
+ *构造顶点ve1到ve2的一条边，同时构造一个新面
+ *注意当前loop的走向变为ve1->ve2,新面loop的走向为ve2->ve1
+ *@param[in] ve1 顶点1
+ *@param[in] ve2 顶点2
+ *@param[in] loop 当前环
+ *@return 新生成的面
+ */
 Face* EulerOperator::mef(Vertex* ve1,Vertex* ve2,Loop* loop)
 {
 	Edge* edge  = makeEdge(ve1,ve2);
@@ -228,7 +249,13 @@ Face* EulerOperator::mef(Vertex* ve1,Vertex* ve2,Loop* loop)
 	return face;
 }
 
-
+/*
+ *删除环中ve1->ve2的一条边，构造一个新环
+ *@param[in] ve1 顶点1
+ *@param[in] ve2 顶点2
+ *@param[in] loop 当前环
+ *@return 新生成的环
+ */
 Loop* EulerOperator::kemr(Vertex *ve1, Vertex *ve2, Loop *loop)
 {
 	Half_Edge *he1,*he2;
@@ -255,12 +282,23 @@ Loop* EulerOperator::kemr(Vertex *ve1, Vertex *ve2, Loop *loop)
 	return loop2;
 }
 
+/*
+ *删除innerLoop指向的面，将其变成outerLoop指向面的内环
+ *@param[in] outerLoop 接收删除面的外环
+ *@param[in] innerLoop 要删除面所在的外环
+ */
 void EulerOperator::kfmrh(Loop* outerLoop,Loop* innerLoop)
 {
 	delFace(innerLoop->face->solid,innerLoop->face);
 	insertLoop(outerLoop->face,innerLoop);
 }
 
+/*
+ *平移扫成
+ *@param[in] face 要平移的面
+ *@param[in] dir 平移方向
+ *@param[in] distance 平移方向上的位移
+ */
 void EulerOperator::sweep(Face *face, double dir[3], double distance)
 {
 	Loop* outerLoop = NULL;

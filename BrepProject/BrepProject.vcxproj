@@ -78,21 +78,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BrepModel.h" />
-    <ClInclude Include="EulerOperator.h" />
-    <ClInclude Include="GlutDisplay.h" />
-    <ClInclude Include="HalfEdgeDS.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="BrepModel.cpp" />
-    <ClCompile Include="EulerOperator.cpp" />
-    <ClCompile Include="GlutDisplay.cpp" />
-    <ClCompile Include="HalfEdgeDS.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="cube.brp" />
     <None Include="cube2.brp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\BrepModel.cpp" />
+    <ClCompile Include="src\EulerOperator.cpp" />
+    <ClCompile Include="src\GlutDisplay.cpp" />
+    <ClCompile Include="src\HalfEdgeDS.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\BrepModel.h" />
+    <ClInclude Include="src\EulerOperator.h" />
+    <ClInclude Include="src\GlutDisplay.h" />
+    <ClInclude Include="src\HalfEdgeDS.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
