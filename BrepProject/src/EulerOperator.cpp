@@ -207,36 +207,26 @@ Face* EulerOperator::mef(Vertex* ve1,Vertex* ve2,Loop* loop)
 	Loop* loop2 = new Loop;
 	Half_Edge *tmpHe1,*tmpHe2;
 	Half_Edge* he = loop->he;
-	while(he->ve1!=ve2) he=he->next;
-	tmpHe1 = he;
+
 	while(he->ve1!=ve1) he=he->next;
+	tmpHe1 = he;
+	while(he->ve1!=ve2) he=he->next;
 	tmpHe2 = he;
 
-	//可能有环
-	while(he!=loop->he)
-	{
-		if(he->ve1==ve2)
-		{
-			tmpHe1 = he;
-			break;
-		}
-		he = he->next;
-	}
+	tmpHe1->prev->next = he1;
+	he1->prev = tmpHe1->prev;
+	he2->next = tmpHe1;
+	tmpHe1->prev = he2;
 
-	tmpHe1->prev->next = he2;
-	he2->prev = tmpHe1->prev;
-	he1->next = tmpHe1;
-	tmpHe1->prev = he1;
+	tmpHe2->prev->next = he2;
+	he2->prev = tmpHe2->prev;
+	he1->next = tmpHe2;
+	tmpHe2->prev = he1;
 
-	tmpHe2->prev->next = he1;
-	he1->prev = tmpHe2->prev;
-	he2->next = tmpHe2;
-	tmpHe2->prev = he2;
-
-	loop2->he = he2;
-	he2->loop = loop2;
 	loop->he = he1;
 	he1->loop = loop;
+	loop2->he = he2;
+	he2->loop = loop2;
 
 	//创建新面
 	Face* face = new Face;
